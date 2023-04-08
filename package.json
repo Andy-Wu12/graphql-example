@@ -1,0 +1,28 @@
+{
+  "name": "graphql-node-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andy-Wu12/graphql-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andy-Wu12/graphql-example/issues"
+  },
+  "homepage": "https://github.com/Andy-Wu12/graphql-example#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "graphql": "^15.8.0",
+    "graphql-http": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17"
+  }
+}
