@@ -1,30 +1,32 @@
 import express from 'express';
-import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLFloat } from 'graphql';
-import { createHandler } from 'graphql-http/lib/use/express';
+import { createYoga, createSchema } from 'graphql-yoga';
 
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'Item',
-    fields: {
-      description: {
-        type: GraphQLString,
-        resolve: () => 'Red Shoe',
-      },
-      price: {
-        type: GraphQLFloat,
-        resolve: () => 42.12
-      }
+const schema = createSchema({
+  typeDefs: `
+    type Query {
+      description: String
+      price: Float
     }
-  }),
+  `,
+  resolvers: {
+    Query: {
+      description: () => 'Red Shoe',
+      price: () => 42.12
+    }
+  }
 });
 
-// const root = {
-//   description: 'Red Shoe',
-//   price: 42.12
-// }
-
 const app = express();
-app.all('/graphql', createHandler({ schema }));
+
+const yoga = createYoga({
+  schema,
+  context: (req) => ({ // Context factory gets called for every request
+
+  }),
+  graphiql: true,
+});
+
+app.use('/graphql', yoga);
 
 app.listen(3000, () => {
   console.log('Running GraphQL server...');
