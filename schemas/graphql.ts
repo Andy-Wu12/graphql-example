@@ -1,14 +1,17 @@
 import { createSchema } from "graphql-yoga";
 
-import { productResolvers } from './products/product.resolver';
-import { productType } from './products/product.graphql';
-
-import { orderResolvers } from "./orders/order.resolver";
-import { orderType } from "./orders/order.graphql";
+import OrderModule from "./orders/order.module";
+import ProductModule from "./products/product.module";
 
 const schema = createSchema({
-  typeDefs: [productType, orderType],
-  resolvers: [productResolvers, orderResolvers]
+  typeDefs: [
+    OrderModule.typeDef,
+    ProductModule.typeDef
+  ],
+  resolvers: [
+    OrderModule.resolvers,
+    ProductModule.resolvers
+  ]
 });
 
 export {
