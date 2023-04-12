@@ -1,33 +1,9 @@
-type Review = {
-  rating: number,
-  comment: string
-}
-
-type Product = {
-  id: string,
-  description: string,
-  price: number,
-  reviews: Review[]
-}
-
-// Placeholder data
-const exampleProduct1: Product= {
-  id: 'redshoe',
-  description: 'Red Shoe',
-  price: 42.12,
-  reviews: []
-}
-
-const exampleProduct2: Product = {
-  id: 'bluejeans',
-  description: 'Blue Jeans',
-  price: 50,
-  reviews: []
-}
+import { getAllProducts } from "./product.model";
+import type { Product } from "./product.model";
 
 const productResolvers = {
   Query: {
-    products: () => [exampleProduct1, exampleProduct2]
+    products: () => getAllProducts()
   },
   Product: {
     id: (parent: Product) => parent.id,
@@ -38,8 +14,5 @@ const productResolvers = {
 }
 
 export {
-  Product,
-  exampleProduct1,
-  exampleProduct2,
   productResolvers
 }
