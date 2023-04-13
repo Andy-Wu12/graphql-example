@@ -1,9 +1,19 @@
-import { getAllProducts } from "./product.model";
+import ProductModel from "./product.model";
 import type { Product } from "./product.model";
 
 const productResolvers = {
   Query: {
-    products: () => getAllProducts()
+    products: () => ProductModel.getAllProducts(),
+
+    productsByPriceRange: (_: unknown, args: any) => {
+      const { min, max } = args;
+      return ProductModel.getProductsByPriceRange(min, max);
+    },
+
+    product: (_: unknown, args: any) => {
+      const { id } = args;
+      return ProductModel.getProductByID(id);
+    }
   },
   Product: {
     id: (parent: Product) => parent.id,

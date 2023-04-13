@@ -2,6 +2,8 @@
 const productType = /* GraphQL */ `
   type Query {
     products: [Product]
+    productsByPriceRange(min: Float!, max: Float!): [Product]
+    product(id: ID!): Product
   }
 
   type Product {

@@ -1,4 +1,4 @@
-import { getAllProducts } from "../products/product.model";
+import ProductModel from "../products/product.model";
 import type { Product } from "../products/product.model";
 
 type OrderItem = {
@@ -13,12 +13,12 @@ type Order = {
 }
 
 const orderItem1: OrderItem = {
-  product: getAllProducts()[0],
+  product: ProductModel.getAllProducts()[0],
   quantity: 3
 }
 
 const orderItem2: OrderItem = {
-  product: getAllProducts()[1],
+  product: ProductModel.getAllProducts()[1],
   quantity: 4
 }
 

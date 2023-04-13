@@ -32,10 +32,26 @@ function getAllProducts() {
   return products;
 }
 
+function getProductsByPriceRange(min: number, max: number): Product[] {
+  return products.filter((product) => { 
+    return product.price >= min && product.price <= max;
+  })
+}
+
+function getProductByID(id: string): Product | undefined {
+  return products.find((product) => {
+    return product.id === id;
+  })
+}
+
+const ProductModel = {
+  getAllProducts, 
+  getProductsByPriceRange,
+  getProductByID
+};
+
 export type {
   Product
 };
 
-export {
-  getAllProducts
-};
+export default ProductModel;
