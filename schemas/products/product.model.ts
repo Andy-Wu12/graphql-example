@@ -1,7 +1,7 @@
 
 type Review = {
   rating: number,
-  comment: string
+  comment?: string
 }
 
 type Product = {
@@ -44,10 +44,39 @@ function getProductByID(id: string): Product | undefined {
   })
 }
 
+function addNewProduct(id: string, description: string, price: number): Product {
+  const newProduct: Product = {
+    id,
+    price,
+    description,
+    reviews: []
+  };
+
+  products.push(newProduct);
+  return newProduct;
+}
+
+function addNewProductReview(productID: string, rating: number, comment?: string): Product | undefined {
+  const newReview: Review = {
+    rating,
+    comment
+  };
+
+  const matchedProduct = getProductByID(productID);
+  if(matchedProduct) {
+    matchedProduct.reviews.push(newReview);
+    return matchedProduct;
+  }
+
+  return undefined;
+}
+
 const ProductModel = {
   getAllProducts, 
   getProductsByPriceRange,
-  getProductByID
+  getProductByID,
+  addNewProduct,
+  addNewProductReview
 };
 
 export type {
