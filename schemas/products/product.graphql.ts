@@ -1,9 +1,14 @@
 
 const productType = /* GraphQL */ `
   type Query {
-    products: [Product]
+    products: [Product]!
     productsByPriceRange(min: Float!, max: Float!): [Product]
     product(id: ID!): Product
+  }
+
+  type Mutation {
+    addNewProduct(id: ID!, description: String!, price: Float!): Product!
+    addNewProductReview(productID: ID!, rating: Int!, comment: String): Product
   }
 
   type Product {
